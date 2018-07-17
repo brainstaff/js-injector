@@ -1,7 +1,7 @@
 # Injector
 
-[![npm version](https://img.shields.io/npm/v/@alexey.kornilov/injector.svg?style=flat-square)](https://www.npmjs.com/package/@alexey.kornilov/injector)
-[![license](https://img.shields.io/badge/licence-MIT-green.svg?style=flat-square)](https://github.com/kavolorn/Injector/blob/develop/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@brainstaff/injector.svg?style=flat-square)](https://www.npmjs.com/package/@brainstaff/injector)
+[![license](https://img.shields.io/badge/licence-MIT-green.svg?style=flat-square)](https://github.com/brainstaff/js-injector/blob/master/LICENSE)
 
 This is dependency injector for JavaScript with support for ES6/ES2015. It can 
 be applied in both node and browser environments.
@@ -19,12 +19,12 @@ be applied in both node and browser environments.
 Execute this command in your environment. 
 
 ```
-npm install @alexey.kornilov/injector --save
+npm install @brainstaff/injector --save
 ```
 or
 
 ```
-yarn add @alexey.kornilov/injector
+yarn add @brainstaff/injector
 ```
 
 <small>[Table of Contents](#table-of-contents)</small>
@@ -37,7 +37,7 @@ One is able to register constructor for a particular class and create
 instances of it:
 
 ```js
-import Injector from "@alexey.kornilov/injector";
+import Injector from "@brainstaff/injector";
 
 class Foo {
     constructor() {
@@ -74,7 +74,7 @@ Creating instance of Foo.
 One is able to register pure object.
 
 ```js
-import Injector from "@alexey.kornilov/injector";
+import Injector from "@brainstaff/injector";
 
 const foo = {
     name: "Foo object " + Math.round(Math.random() * 10)
@@ -114,7 +114,7 @@ Same object resolved.
 Now it's time to demonstrate dependency injection.
 
 ```js
-import Injector from "@alexey.kornilov/injector";
+import Injector from "@brainstaff/injector";
 
 class Foo {
     constructor() {
