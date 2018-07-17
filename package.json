@@ -1,9 +1,9 @@
 {
-    "name": "@alexey.kornilov/injector",
+    "name": "@brainstaff/injector",
     "version": "0.3.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
-    "repository": "https://github.com/kavolorn/Injector",
+    "repository": "https://github.com/brainstaff/js-injector",
     "author": "Alexey Kornilov <alexey.kornilov@kavolorn.ru>",
     "license": "MIT",
     "devDependencies": {
@@ -17,6 +17,7 @@
         "webpack": "^2.3.1"
     },
     "scripts": {
+        "clean": "rm -rf dist",
         "build": "NODE_ENV=production webpack --progress --hide-modules",
         "watch": "NODE_ENV=development webpack --progress --hide-modules --watch",
         "test": "NODE_ENV=production babel ./tests --out-dir ./dist && mocha dist/tests"

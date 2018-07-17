@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
     entry: {
-        injector: "./src/Injector.js"
+        injector: "./src/injector.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
