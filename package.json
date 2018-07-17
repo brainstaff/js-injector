@@ -17,6 +17,7 @@
         "webpack": "^2.3.1"
     },
     "scripts": {
+        "clean": "rm -rf dist",
         "build": "NODE_ENV=production webpack --progress --hide-modules",
         "watch": "NODE_ENV=development webpack --progress --hide-modules --watch",
         "test": "NODE_ENV=production babel ./tests --out-dir ./dist && mocha dist/tests"
