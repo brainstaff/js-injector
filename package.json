@@ -1,11 +1,14 @@
 {
     "name": "@brainstaff/injector",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
     "repository": "https://github.com/brainstaff/js-injector",
     "author": "Alexey Kornilov <alexey.kornilov@kavolorn.ru>",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "babel-cli": "^6.24.1",
         "babel-core": "^6.24.0",
