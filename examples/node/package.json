@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Serverside injection.",
+  "main": "index.js",
+  "author": "Alexey Kornilov <alexey.kornilov@brainstaff.org>",
+  "license": "MIT",
+  "dependencies": {
+    "@brainstaff/injector": "../../"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

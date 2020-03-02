@@ -1,5 +1,5 @@
-const Injector = require('../dist/injector.js').default;
-const { asClass, asValue } = require('../dist/injector.js');
+const Injector = require('@brainstaff/injector').default;
+const { asClass, asValue } = require('@brainstaff/injector');
 
 class A {
     constructor() {
