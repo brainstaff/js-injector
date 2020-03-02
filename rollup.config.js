@@ -19,6 +19,12 @@ export default {
       plugins: [
         terser()
       ]
+    }, {
+      file: 'dist/injector.es.min.js',
+      format: 'es',
+      plugins: [
+        terser()
+      ]
     }
   ],
   plugins: [
