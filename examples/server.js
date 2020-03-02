@@ -1,4 +1,5 @@
-var Injector = require('../dist/injector.js').default;
+const Injector = require('../dist/injector.js').default;
+const { asClass, asValue } = require('../dist/injector.js');
 
 class A {
     constructor() {
@@ -20,8 +21,8 @@ class B {
 }
 
 const injector = new Injector();
-injector.register('a', A);
-injector.register('b', B);
+injector.register('a', asValue(injector.resolve(A)));
+injector.register('b', asClass(B));
 const b = injector.resolve("b");
 
 console.log(b);

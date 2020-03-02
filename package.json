@@ -1,6 +1,6 @@
 {
     "name": "@brainstaff/injector",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
     "repository": "https://github.com/brainstaff/js-injector",
