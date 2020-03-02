@@ -1,3 +1,6 @@
+/**
+ * Dependency injection container.
+ */
 class Injector {
   constructor(disableOutput = false) {
     this.disableOutput = disableOutput;
@@ -9,9 +12,9 @@ class Injector {
   /**
    * Registers prepared component or constructor.
    * @param name Name of the component.
-   * @param constructor Prepared component or constructor.
+   * @param definition Component definition prepared by "as" functions.
    */
-  register(name, constructor) {
+  register(name, definition) {
     if (!this.disableOutput) {
       console.log(
         `[${new Date()}]`,
@@ -19,71 +22,93 @@ class Injector {
         `Registering '${name}' component.`
       );
     }
-    this.components[name] = constructor;
-  }
-
-  /**
-   * Resolves component and registers it.
-   * @param name Name of the service.
-   * @param constructor Prepared component or constructor.
-   * @param params Extra parameters for constructor.
-   */
-  registerService(name, constructor, params) {
-    const service = this.resolve(constructor, params);
-    if (!this.disableOutput) {
-      console.log(
-        `[${new Date()}]`,
-        `[Injector]`,
-        `Registering '${name}' service.`
-      );
-    }
-    this.components[name] = service;
-  }
-
-  registerUtility(name, constructor, params) {
-    const service = this.resolve(constructor, params);
-    if (!this.disableOutput) {
-      console.log(
-        `[${new Date()}]`,
-        `[Injector]`,
-        `Registering '${name}' utility.`
-      );
-    }
-    this.components[name] = service;
+    this.components[name] = definition;
   }
 
   /**
    * Resolves constructor into prepared component.
    * @param constructor Prepared component or constructor.
+   * @param params Parameters for directly provided constructor.
    * @returns {*}
    */
   resolve(constructor, params) {
-    // If constructor is an object returning it
-    if (typeof constructor === "object") {
-      return constructor;
-    }
-    // If constructor is an string returning registered component
-    if (typeof constructor === "string") {
-      if (this.components[constructor] === undefined) {
-        throw `Cannot resolve '${constructor}' dependency.`;
+    // If we have a definition
+    if (typeof constructor === "string" && this.components[constructor]) {
+      const definition = this.components[constructor];
+      if (definition.type === "class") {
+        const dependencies = {};
+        if (definition.class.prototype && definition.class.prototype.dependencies) {
+          definition.class.prototype.dependencies.forEach((dependency) => {
+            if (this.components[dependency] === undefined) {
+              throw `Cannot resolve '${dependency}' dependency.`;
+            }
+            dependencies[dependency] = this.resolve(dependency);
+          });
+        }
+        return new definition.class(dependencies, definition.params);
       }
-      return this.resolve(this.components[constructor]);
+      if (typeof definition === "object" && definition.type === "function") {
+        return definition.function.call(null, definition.params);
+      }
+      if (typeof definition === "object" && definition.type === "value") {
+        return definition.value;
+      }
     }
     // If constructor is a function resolving it
-    if (typeof constructor === "function" && constructor.prototype.dependencies) {
+    if (typeof constructor === "function") {
       const dependencies = {};
-      constructor.prototype.dependencies.forEach((dependency) => {
-        if (this.components[dependency] === undefined) {
-          throw `Cannot resolve '${dependency}' dependency.`;
-        }
-        dependencies[dependency] = this.resolve(this.components[dependency]);
-      });
+      if (constructor.prototype.dependencies) {
+        constructor.prototype.dependencies.forEach((dependency) => {
+          if (this.components[dependency] === undefined) {
+            throw `Cannot resolve '${dependency}' dependency.`;
+          }
+          dependencies[dependency] = this.resolve(dependency);
+        });
+      }
       return new constructor(dependencies, params);
-    } else if (typeof constructor === "function") {
-      return constructor;
     }
     throw `Cannot resolve dependency.`;
   }
+}
+
+/**
+ * Prepares definition of the function which generates instance.
+ * @param _function Function which generates the instance.
+ * @param params Params for the function.
+ * @returns {{function: *, type: string, params: *}}
+ */
+export function asFunction(_function, params) {
+  return {
+    type: "function",
+    function: _function,
+    params
+  };
+}
+
+/**
+ * Prepares definition of the class.
+ * @param _class Class to be resolved.
+ * @param params Params for the constructor.
+ * @returns {{type: string, params: *, class: *}}
+ */
+export function asClass(_class, params) {
+  return {
+    type: "class",
+    class: _class,
+    params
+  };
+}
+
+/**
+ * Prepares definition of already resolved value.
+ * @param value Value to return.
+ * @returns {{type: string, value: *}}
+ */
+export function asValue(value) {
+  return {
+    type: "value",
+    value
+  };
 }
 
 export default Injector;
