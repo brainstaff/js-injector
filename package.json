@@ -3,6 +3,7 @@
     "version": "2.0.0",
     "description": "Dependency Injector for JavaScript projects.",
     "main": "dist/injector.js",
+    "module": "dist/injector.es.js",
     "repository": "https://github.com/brainstaff/js-injector",
     "author": "Alexey Kornilov <alexey.kornilov@kavolorn.ru>",
     "license": "MIT",

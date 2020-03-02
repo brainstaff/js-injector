@@ -10,6 +10,9 @@ export default {
       format: 'umd',
       name: 'injector'
     }, {
+      file: 'dist/injector.es.js',
+      format: 'es'
+    }, {
       file: 'dist/injector.min.js',
       format: 'umd',
       name: 'injector',
