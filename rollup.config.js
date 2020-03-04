@@ -10,9 +10,18 @@ export default {
       format: 'umd',
       name: 'injector'
     }, {
+      file: 'dist/injector.es.js',
+      format: 'es'
+    }, {
       file: 'dist/injector.min.js',
       format: 'umd',
       name: 'injector',
+      plugins: [
+        terser()
+      ]
+    }, {
+      file: 'dist/injector.es.min.js',
+      format: 'es',
       plugins: [
         terser()
       ]
@@ -21,7 +30,8 @@ export default {
   plugins: [
     eslint(),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      runtimeHelpers: true
     })
   ]
 };
