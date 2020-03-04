@@ -1,5 +1,5 @@
-const Injector = require('@brainstaff/injector').default;
-const { asClass, asValue } = require('@brainstaff/injector');
+import Injector from '@brainstaff/injector';
+import { asClass, asValue } from '@brainstaff/injector';
 
 class A {
     constructor() {
@@ -22,7 +22,7 @@ class B {
 
 const injector = new Injector();
 injector.register('a', asValue(injector.resolve(A)));
-injector.register('b', asClass(B));
-const b = injector.resolve("b");
+injector.register('B', asClass(B));
+const b = injector.resolve("B");
 
 console.log(b);
