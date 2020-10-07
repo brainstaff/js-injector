@@ -38,6 +38,7 @@ instances of it:
 
 ```js
 import Injector from "@brainstaff/injector";
+import { asClass } from "@brainstaff/injector";
 
 class Foo {
     constructor() {
@@ -50,7 +51,7 @@ class Foo {
 }
 
 const injector = new Injector();
-injector.register("foo", Foo);
+injector.register("foo", asClass(Foo));
 
 // Resolve class by its registered name
 const foo1 = injector.resolve("foo");
@@ -75,13 +76,14 @@ One is able to register pure object.
 
 ```js
 import Injector from "@brainstaff/injector";
+import { asValue } from "@brainstaff/injector";
 
 const foo = {
     name: "Foo object " + Math.round(Math.random() * 10)
 };
 
 const injector = new Injector();
-injector.register("foo", foo);
+injector.register("foo", asValue(foo));
 
 // Resolve registered object
 const foo1 = injector.resolve("foo");
@@ -169,6 +171,6 @@ Creating instance of Bar.
 Bar { foo: Foo {} }
 ```
 
-Also usage examples can be found in `./examples` folder.
+Also, usage examples can be found in `./examples` folder.
 
 <small>[Table of Contents](#table-of-contents)</small>
