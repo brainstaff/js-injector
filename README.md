@@ -13,6 +13,7 @@ be applied in both node and browser environments.
 	- [Constructor Registration](#constructor-registration)
 	- [Object Registration](#object-registration)
 	- [Dependency Injection](#dependency-injection)
+- [Changelog](#changelog)
 
 ## Installation
 
@@ -172,5 +173,18 @@ Bar { foo: Foo {} }
 ```
 
 Also, usage examples can be found in `./examples` folder.
+
+<small>[Table of Contents](#table-of-contents)</small>
+
+## Changelog
+
+### v2.0.0
+
+- Introduced definitions (asValue, asClass, asFunction).
+- Switched to rollup from webpack.
+
+### v1.0.0
+
+- Initial injector implementation.
 
 <small>[Table of Contents](#table-of-contents)</small>
