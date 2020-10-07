@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Serverside injection.",
+  "main": "index.js",
+  "author": "Alexey Kornilov <alexey.kornilov@brainstaff.org>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/preset-env": "^7.8.6",
+    "@babel/register": "^7.8.6",
+    "@brainstaff/injector": "../../"
+  },
+  "scripts": {
+    "start": "node --require @babel/register index.js"
+  }
+}

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Dependency Injection example.</title>
-    <script type="application/javascript" src="../dist/injector.js"></script>
+    <script type="application/javascript" src="../../dist/injector.min.js"></script>
     <script type="application/javascript">
 
         var Injector = injector.default;
+        var { asClass } = injector;
 
         var A = function() {
             this.nameA = "A";
@@ -20,8 +21,8 @@
         B.prototype.dependencies = ["a"];
 
         var injector = new Injector();
-        injector.register('a', A);
-        injector.register('b', B);
+        injector.register('a', asClass(A));
+        injector.register('b', asClass(B));
         var b = injector.resolve('b');
 
         console.log(b);
